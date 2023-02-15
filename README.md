@@ -1,5 +1,5 @@
  
 <html><body>
-<h1>A collaboration by @clarence & @moses</h1>
+<h1><bg color="blue">A collaboration by @clarence & @moses</bg></h1>
 </body>
 </html>
