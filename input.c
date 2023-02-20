@@ -11,7 +11,7 @@
   * Return: return number of characters read or -1 if nothing read
   */
 
-ssize_t _getline(char *str, size_t *bufsize)
+size_t _getline(char *str, size_t *bufsize)
 {
 	ssize_t n;
 
