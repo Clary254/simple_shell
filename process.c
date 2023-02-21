@@ -95,7 +95,6 @@ int execute_program(char *path, char **args, char **env)
 
 void main_loop(char **env)
 {
-
 	char command[BUFSIZE];
 	char *path;
 	char *newpath;
@@ -103,6 +102,7 @@ void main_loop(char **env)
 	size_t bufsize = BUFSIZE;
 	ssize_t command_len;
 	int status;
+	builtin_function b_func;
 
 	do {
 		printf("> ");
@@ -116,15 +116,22 @@ void main_loop(char **env)
 			perror("malloc");
 
 		}
+
 		parse_command(command, path);
 		setargs(args, command);
+		b_func = get_builtin_func(path);
 
-		setpath(path, newpath, env);
-		status = execute_program(newpath, args, env);
-		free(path);
-		free(newpath);
+		if (b_func != NULL)
+		{
+			status = b_func(env, args);
+		} else
+		{
+			setpath(path, newpath, env);
+			status = execute_program(newpath, args, env);
+			free(path);
+			free(newpath);
+		}
 	} while (status);
-
 }
 
 
