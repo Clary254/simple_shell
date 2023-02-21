@@ -2,12 +2,6 @@
 #include <stddef.h>
 #include "shell.h"
 
-
-struct_builtin f_array[] = {
-	{"exit", &_exit_shell},
-	{"env", &print_env},
-	{NULL, NULL}
-};
 /**
   * _exit_shell - exists shell session
   * @env: current environment variables
@@ -54,6 +48,11 @@ int print_env(char **env, char **args)
 builtin_function get_builtin_func(char *fname)
 {
 	int x = 0;
+	struct_builtin f_array[] = {
+		{"exit", &_exit_shell},
+		{"env", &print_env},
+		{NULL, NULL}
+	};
 
 	while (f_array[x].name != NULL)
 	{
