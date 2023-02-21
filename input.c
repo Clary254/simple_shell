@@ -43,6 +43,7 @@ char **setargs(char **tokens, char *str)
 	char *token;
 	int position = 0;
 	char *delim = "/ ";
+	char *delim2 = " ";
 
 	if (ispath(str))
 	{
@@ -55,7 +56,7 @@ char **setargs(char **tokens, char *str)
 	while (token != NULL)
 	{
 		tokens[position] = token;
-		token = strtok(NULL, delim);
+		token = strtok(NULL, delim2);
 		position++;
 	}
 	tokens[position] = NULL;
