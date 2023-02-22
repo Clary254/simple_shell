@@ -64,7 +64,7 @@ int setpath(char *command, char *path, char **env)
   * Return: 1 for success
   */
 
-int execute_program(char *path, char **args, char **env)
+int execute_program(char *path, char **args, char **env, char **av)
 {
 
 	pid_t pid;
@@ -78,7 +78,7 @@ int execute_program(char *path, char **args, char **env)
 	} else if (pid == 0)
 	{
 		execve(path, args, env);
-		perror("./shell");
+		perror(av[0]);
 	} else
 	{
 		waitpid(pid, &status, 0);
@@ -93,7 +93,7 @@ int execute_program(char *path, char **args, char **env)
   * Return: void
   */
 
-void main_loop(char **env)
+void main_loop(char **env, char **av)
 {
 	char command[BUFSIZE];
 	char *path;
@@ -127,7 +127,7 @@ void main_loop(char **env)
 		} else
 		{
 			setpath(path, newpath, env);
-			status = execute_program(newpath, args, env);
+			status = execute_program(newpath, args, env, av);
 			free(path);
 			free(newpath);
 		}

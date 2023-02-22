@@ -15,6 +15,6 @@ int main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 
-	main_loop(env);
+	main_loop(env, av);
 	return (0);
 }

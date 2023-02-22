@@ -20,7 +20,7 @@ typedef struct builtin
 size_t _getline(char *str, size_t *bufsize);
 char **setargs(char **tokens, char *str);
 char *_strcpy(char *src, char *dest);
-void main_loop(char **env);
+void main_loop(char **env, char **av);
 int _isspace(int c);
 char *parse_command(char *command, char *path);
 size_t _strlen(char *str);
